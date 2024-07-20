@@ -2,11 +2,11 @@ import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TextInput from "./TextInput"; // Make sure to import your components
-import TextArea from "./TextArea";
-import SelectInput from "./SelectInput";
-import MultiSelect from "./MultiSelect";
-import CheckBox from "./CheckBox";
+import Input from "./Form/Input";
+import Textarea from "./Form/Textarea";
+import SearchSelect from "./Form/SearchSelect";
+import MultiSelect from "./Form/MultiSelect";
+import CheckBox from "./Form/CheckBox";
 
 // Define your validation schema using Yup
 const schema = Yup.object().shape({
@@ -31,7 +31,7 @@ const multiSelectOptions = [
 const Example = () => {
   const methods = useForm({
     resolver: yupResolver(schema),
-    mode: "onBlur", // Validate on blur
+    mode: "onBlur",
   });
 
   const onSubmit = (data) => {
@@ -41,11 +41,11 @@ const Example = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="p-3">
-        <TextInput name="textField" label="Text Field" isRequired />
+        <Input name="textField" label="Text Field" isRequired />
 
-        <TextArea name="textArea" label="Text Area" isRequired />
+        <Textarea name="textArea" label="Text Area" isRequired />
 
-        <SelectInput
+        <SearchSelect
           name="selectField"
           label="Select Field"
           options={selectOptions}
